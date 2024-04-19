@@ -1,4 +1,5 @@
-dic = {}
-dic["a"] = 1
-if dic.get("c") == None :
-    print("nam")
+s = set()
+s.update([1, 2])
+s.update([1, 3])
+print(s)
+print(list(s))
