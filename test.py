@@ -1,5 +1,2 @@
-s = set()
-s.update([1, 2])
-s.update([1, 3])
-print(s)
-print(list(s))
+s = "01234567"
+s1 = s[1:5]
