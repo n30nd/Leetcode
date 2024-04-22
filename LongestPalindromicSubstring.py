@@ -76,13 +76,36 @@ def longestPalindrome(s):
                     continue
                 else:
                     break
-
-
-
-
     return maxPS
 
 
 
-s = "cbbd"
+
+def longestPalindrome2(s : str) -> str :
+    n = len(s)
+    if n <= 1 :
+        return s
+    def expand_from_center(left, right) :
+        while left >= 0 and right < n and s[left] == s[right] :
+            left -= 1
+            right += 1
+        return s[left+1 : right]
+    maxlen = 1
+    maxS = s[0]
+    for i in range(n-1) :
+        oddS = expand_from_center(i, i)
+        evenS = expand_from_center(i, i+1)
+
+        if len(oddS) > maxlen :
+            maxlen  = len(oddS)
+            maxS = oddS
+        if len(evenS) > maxlen :
+            maxlen = len(evenS)
+            maxS = evenS
+    return maxS
+
+
+
+s = "cbbad"
 print(longestPalindrome(s))
+print(longestPalindrome2(s))
