@@ -105,7 +105,40 @@ def longestPalindrome2(s : str) -> str :
     return maxS
 
 
+#Dynamic Programming
+"""
+Lấy dp[l][r] thể hiện chuỗi s[l : r+1] có phải chuỗi đối xứng hay không
+Điều kiệnể d[l][r] = 1 <=> s[l] = s[r] and d[l+1 : r] = 1
+Khởi tạo d[i][i] = 1 với mọi i in range(len(s))
+"""
+def longestPalindrome3(s : str) -> str :
+    n = len(s)
+    if n < 2 :
+        return s
 
-s = "cbbad"
+    dp = [[0 for i in range(n)] for i in range(n)]
+    maxlen = 1
+    maxS = s[0]
+   #init
+
+    for l in range(n):
+        dp[l][l] = 1
+
+    for l in range(n-1, -1, -1) :
+        for r in range(n-1, l, -1) :
+            if s[l] == s[r] and (r-l <2 or dp[l+1][r-1]==1) :
+                dp[l][r] = 1
+                if maxlen <= r-l+1 :
+                    maxlen  = r-l+1
+                    maxS = s[l:r+1]
+    return maxS
+
+
+
+
+
+
+s = "aaaa"
 print(longestPalindrome(s))
 print(longestPalindrome2(s))
+print(longestPalindrome3(s))
